@@ -69,17 +69,15 @@ DIFF=$((END - BUILD_START))
 
 if [ -f $(pwd)/out/arch/arm64/boot/Image ]
         then
-                curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d text="<i>Build compiled successfully in $((DIFF / 60)) minute(s) and $((DIFF % 60)) seconds</i>" -d chat_id=${chat_id} -d parse_mode=HTML
                 find $DTS -name '*.dtb' -exec cat {} + > $DTBPATH
                 find $DTS -name 'Image' -exec cat {} + > $IMGPATH
                 find $DTS -name 'dtbo.img' -exec cat {} + > $DTBOPATH
                 cd $ANYKERNEL3_DIR/
                 zip -r9 $FINAL_KERNEL_ZIP * -x README $FINAL_KERNEL_ZIP
                 curl -F chat_id="${chat_id}"  \
-			-F document=@"$FINAL_KERNEL_ZIP" \
-			-F caption="The kernel build has been completed and can be installed v$KERVER" \
-				https://api.telegram.org/bot${token}/sendDocument
-
+                -F document=@"$FINAL_KERNEL_ZIP" \
+                -F caption="<i>Build compiled successfully in $((DIFF / 60)) minute(s) and $((DIFF % 60)) seconds</i> v$KERVER" \
+                https://api.telegram.org/bot${token}/sendDocument
         else
                 curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d text="Build failed !" -d chat_id=${chat_id} -d parse_mode=HTML
                 curl -F chat_id="${chat_id}"  \

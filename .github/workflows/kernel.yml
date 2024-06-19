@@ -54,11 +54,11 @@ jobs:
         run: |
           cd kernel
           if [ "${TOOLCHAIN}" = "clang" ]; then
-            wget https://raw.githubusercontent.com/farizmaul/Github-server/unified/alioth_build_script_clang.sh
+            wget https://raw.githubusercontent.com/farizmaul/Github-Server/main/alioth_build_script_clang.sh
             bash alioth_build_script_clang.sh
           fi
 
           if [ "${TOOLCHAIN}" = "gcc" ]; then
-            wget https://raw.githubusercontent.com/farizmaul/Github-server/unified/alioth_build_script_gcc.sh
+            wget https://raw.githubusercontent.com/farizmaul/Github-Server/main/alioth_build_script_gcc.sh
             bash alioth_build_script_gcc.sh
           fi
