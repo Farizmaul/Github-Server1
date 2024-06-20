@@ -47,18 +47,18 @@ jobs:
 
       - name: Pull source
         run: |
-          git clone --depth=1 https://github.com/Farizmaul/Android_kernel_xiaomi_alioth.git -b $BRANCH kernel
+          git clone --depth=1 https://github.com/Farizmaul/kernel_xiaomi_pipa -b $BRANCH kernel
           git clone --depth=1 https://github.com/Farizmaul/AnyKernel3
 
       - name: Compiling source
         run: |
           cd kernel
           if [ "${TOOLCHAIN}" = "clang" ]; then
-            wget https://raw.githubusercontent.com/farizmaul/Github-Server/main/alioth_build_script_clang.sh
+            wget https://raw.githubusercontent.com/farizmaul/Github-Server/pipa/alioth_build_script_clang.sh
             bash alioth_build_script_clang.sh
           fi
 
           if [ "${TOOLCHAIN}" = "gcc" ]; then
-            wget https://raw.githubusercontent.com/farizmaul/Github-Server/main/alioth_build_script_gcc.sh
+            wget https://raw.githubusercontent.com/farizmaul/Github-Server/pipa/alioth_build_script_gcc.sh
             bash alioth_build_script_gcc.sh
           fi
