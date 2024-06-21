@@ -15,7 +15,7 @@ export ARCH=arm64
 export SUBARCH=arm64
 export KBUILD_BUILD_HOST="Github-server"
 export KBUILD_BUILD_USER="RicoAyuba"
-export KBUILD_COMPILER_STRING=$("$GCC64"aarch64-elf-gcc --version | head -n 1)
+export COMPILER_STRING=$("$GCC64"aarch64-elf-gcc --version | head -n 1)
 export LLD=$("$GCC64"aarch64-elf-ld.lld --version | head -n 1)
 export PATH=$GCC64:$GCC32:/usr/bin:$PATH
 export IMGPATH="$ANYKERNEL3_DIR/Image"
@@ -38,7 +38,7 @@ BUILD_START=$(date +"%s")
 curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d text="start building the kernel from the HEAD commit $COMMIT
 OS		: <code>$DISTRO</code>
 Branch		: <code>$(git rev-parse --abbrev-ref HEAD)</code>
-Compiler Used	: <code>$KBUILD_COMPILER_STRING</code>
+Compiler Used	: <code>$COMPILER_STRING</code>
 LD Version Used :<code>$LLD</code>" -d chat_id=${chat_id} -d parse_mode=HTML
 
 args="ARCH=arm64 \
