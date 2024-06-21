@@ -56,8 +56,7 @@ make -j$(nproc --all) O=out $args $KERNEL_DEFCONFIG
 scripts/config --file out/.config \
         -d LD_DEAD_CODE_DATA_ELIMINATION \
         -d LTO_CLANG \
-        -e LTO_NONE \
-        -d CC_WERROR
+        -e LTO_NONE
 
 cd out || exit
 make -j$(nproc --all) O=out $args olddefconfig
