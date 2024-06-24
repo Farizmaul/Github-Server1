@@ -53,6 +53,33 @@ LD=aarch64-elf-ld.lld"
 
 mkdir out
 make -j$(nproc --all) O=out $args $KERNEL_DEFCONFIG
+scripts/config --file out/.config \
+        -d LD_DEAD_CODE_DATA_ELIMINATION \
+	-d CGROUP_DEBUG \
+	-d CMA_DEBUGFS \
+        -d PM_DEBUG \
+        -d DEBUG_PAGEALLOC \
+        -d SLUB_DEBUG_PANIC_ON \
+        -d DEBUG_PAGEALLOC_ENABLE_DEFAULT \
+        -d DEBUG_OBJECTS \
+        -d DEBUG_OBJECTS_FREE \
+        -d DEBUG_OBJECTS_TIMERS \
+        -d DEBUG_OBJECTS_WORK \
+        -d DEBUG_OBJECTS_PERCPU_COUNTER \
+        -d DEBUG_KMEMLEAK \
+        -d DEBUG_KMEMLEAK_DEFAULT_OFF \
+        -d DEBUG_KMEMLEAK_EARLY_LOG_SIZE \
+        -d DEBUG_STACK_USAGE \
+        -d DEBUG_SPINLOCK \
+        -d DEBUG_MUTEXES \
+        -d DEBUG_ATOMIC_SLEEP \
+        -d DEBUG_SG \
+        -d DEBUG_NOTIFIERS \
+        -d DEBUG_CREDENTIALS \
+        -d DEBUG_SECTION_MISMATCH \
+        -d DEBUG_MEMORY_INIT \
+        -d RMNET_DATA_DEBUG_PKT \
+        -d ESOC_DEBUG
 cd out || exit
 make -j$(nproc --all) O=out $args olddefconfig
 cd ../ || exit
