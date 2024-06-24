@@ -53,8 +53,7 @@ LD=aarch64-elf-ld.lld"
 
 mkdir out
 make -j$(nproc --all) O=out $args $KERNEL_DEFCONFIG
-scripts/config --file out/.config \
-        -d LD_DEAD_CODE_DATA_ELIMINATION
+#scripts/config --file out/.config \
 cd out || exit
 make -j$(nproc --all) O=out $args olddefconfig
 cd ../ || exit
